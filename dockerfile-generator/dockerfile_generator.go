@@ -14,6 +14,7 @@ var ProjectTemplates = map[string]string{
 	"Django":  "templates/django/Dockerfile.tmpl",
 	"Node.js": "templates/nodejs/Dockerfile.tmpl",
 	"Go":      "templates/Go/Dockerfile.tmpl",
+	"Flask":   "templates/flask/Dockerfile.tmpl",
 	// Add more project types as needed
 }
 
