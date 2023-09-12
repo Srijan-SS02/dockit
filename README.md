@@ -38,12 +38,14 @@ dockit is a command-line tool written in Go that simplifies the process of creat
 
 5. To save it to a different directory:
     ```
-     go run main.go /path/to/destination/directory
+     go run dockerfile_generator.go /path/to/destination/directory
     ```
 ### Supported Project Types
 - Django
 - Node.js
-
+- Go
+- Flask
+  
 ### Extending Project Types
 You can easily extend this tool to support additional project types by adding Dockerfile templates and updating the ProjectTemplates map in the code.
 Or you can also raise an issue and we will fix it as soon as possible.
