@@ -1,17 +1,21 @@
-name: Auto Label on Issue Create
-
+name: Label issues
 on:
   issues:
     types:
+      - reopened
       - opened
-
 jobs:
-  add-label:
+  label_issues:
     runs-on: ubuntu-latest
-
+    permissions:
+      issues: write
     steps:
-      - name: Add Label
-        uses: actions/labeler@v3
+      - uses: actions/github-script@v6
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: .github/labeler.yml
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["triage"]
+            })
