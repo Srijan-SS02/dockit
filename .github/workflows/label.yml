@@ -1,43 +1,17 @@
-# This workflow will triage pull requests and apply a label based on the
-# paths that are modified in the pull request.
-#
-# To use this workflow, you will need to set up a .github/labeler.yml
-# file with configuration.  For more information, see:
-# https://github.com/actions/labeler
+name: Auto Label on Issue Create
 
-name: Labeler
 on:
   issues:
     types:
       - opened
-  pull_request:
-    types:
-      - opened
 
 jobs:
-  label:
+  add-label:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Add label
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          if (github.event.issue) {
-            if (github.event.issue.title.includes("bug")) {
-              github.issues.addLabels({
-                issue_number: github.event.issue.number,
-                labels: ["bug"]
-              });
-            }
-          }
-          if (github.event.pull_request) {
-            if (github.event.pull_request.title.includes("feature")) {
-              github.issues.addLabels({
-                issue_number: github.event.pull_request.number,
-                labels: ["enhancement"]
-              });
-            }
-          }
-
-
+      - name: Add Label
+        uses: actions/labeler@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yml
