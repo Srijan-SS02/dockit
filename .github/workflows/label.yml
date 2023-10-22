@@ -6,17 +6,38 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: [pull_request_target]
+on:
+  issues:
+    types:
+      - opened
+  pull_request:
+    types:
+      - opened
 
 jobs:
   label:
-
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-
     steps:
-    - uses: actions/labeler@v4
+    - name: Add label
+      uses: actions/github-script@v6
       with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          if (github.event.issue) {
+            if (github.event.issue.title.includes("bug")) {
+              github.issues.addLabels({
+                issue_number: github.event.issue.number,
+                labels: ["bug"]
+              });
+            }
+          }
+          if (github.event.pull_request) {
+            if (github.event.pull_request.title.includes("feature")) {
+              github.issues.addLabels({
+                issue_number: github.event.pull_request.number,
+                labels: ["enhancement"]
+              });
+            }
+          }
+
+
