@@ -16,7 +16,7 @@ dockit is a command-line tool written in Go that simplifies the process of creat
 
 1. Clone or download this repository to your local machine:
     ```
-    git clone https://github.com/Srijan-SS02/docki.git
+    git clone [https://github.com/Srijan-SS02/docki.git](https://github.com/Srijan-SS02/dockit.git)
     ```
     
 2. Navigate to the repository directory:
