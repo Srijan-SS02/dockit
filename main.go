@@ -52,7 +52,7 @@ func main() {
 	if len(os.Args) > 1 {
 		targetDir = os.Args[1]
 	} else {
-		// If no target directory is provided, use the current working directory
+		// If no target directory is provided,then using current working directory
 		targetDir, err = os.Getwd()
 		if err != nil {
 			fmt.Println("Error getting current working directory:", err)
@@ -60,7 +60,7 @@ func main() {
 		}
 	}
 
-	// Create or overwrite the Dockerfile in the target directory
+	// Creating or overwriting the Dockerfile in the target directory
 	outputFile, err := os.Create(filepath.Join(targetDir, "Dockerfile"))
 	if err != nil {
 		fmt.Println("Error creating Dockerfile:", err)
