@@ -12,7 +12,7 @@ import (
 // Define the supported project types and their respective template files
 var ProjectTemplates = map[string]string{
 	"Django":  "templates/django/Dockerfile.tmpl",
-	"Node.js": "templates/nodejs/Dockerfile.tmpl",
+	"Node.js": "templates/Node.js/Dockerfile.tmpl",
 	"Go":      "templates/Go/Dockerfile.tmpl",
 	"Flask":   "templates/flask/Dockerfile.tmpl",
 	"Mojo":    "templates/Mojo/Dockerfile.tmpl",
