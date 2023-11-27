@@ -1,17 +1,17 @@
-FROM golang:latest AS builder
+# Use an appropriate base image
+FROM node:18
 
+# Set the working directory
 WORKDIR /app
 
-COPY .  .
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-RUN go build -o dockit
+# Install dependencies
+RUN npm install
 
+# Copy the Node.js project files into the container
+COPY . .
 
-FROM debian:stable-slim
-
-WORKDIR /app
-
-COPY --from=builder /app/dockit /app/
-COPY --from=builder /app/templates /app/templates
-
-CMD ["./dockit"]
+# Start the Node.js application
+CMD ["node", "app.js"]
