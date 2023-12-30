@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockit-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockit
+  template:
+    metadata:
+      labels:
+        app: dockit
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: dockit
+        image: ss02/dockit:latest
